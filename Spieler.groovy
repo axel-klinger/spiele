@@ -2,6 +2,7 @@ class Spieler {
 
   Random random = new Random()
   def hand = []
+  def stapel = []
 
   def spielen(tisch) {
     if (tisch.size() == 0) {
