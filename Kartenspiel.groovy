@@ -6,10 +6,6 @@ class Kartenspiel {
                "Kreuz 7", "Kreuz 8", "Kreuz 9", "Kreuz 10", "Kreuz Bube", "Kreuz Dame", "Kreuz König", "Kreuz Ass",
                "Pik 7", "Pik 8", "Pik 9", "Pik 10", "Pik Bube", "Pik Dame", "Pik König", "Pik Ass"]
 
-  static spieler1 = []
-  static spieler2 = []
-  static spieler3 = []
-
   static Random random = new Random()
 
   static ziehen() {
@@ -18,39 +14,49 @@ class Kartenspiel {
     return karte
   }
 
-  static geben() {
+  static geben(spieler1, spieler2, spieler3) {
     10.times {
-      spieler1 << ziehen()
-      spieler2 << ziehen()
-      spieler3 << ziehen()
+      spieler1.hand << ziehen()
+      spieler2.hand << ziehen()
+      spieler3.hand << ziehen()
     }
-  }
-
-  static spielen(spieler) {
-    def karte = spieler.get(random.nextInt(spieler.size()))
-    spieler = spieler - karte
-    return karte
   }
 
   static main(args) {
 
-    geben()
-    println "Spieler 1: " + spieler1.sort()
-    println "Spieler 2: " + spieler2.sort()
-    println "Spieler 3: " + spieler3.sort()
+    Spieler spieler1 = new Spieler()
+    Spieler spieler2 = new Spieler()
+    Spieler spieler3 = new Spieler()
+
+    geben(spieler1, spieler2, spieler3)
+    println "Spieler 1: " + spieler1.hand.sort()
+    println "Spieler 2: " + spieler2.hand.sort()
+    println "Spieler 3: " + spieler3.hand.sort()
     println "Blatt: " + blatt.sort()
 
     // spielen
     10.times {
       def tisch = []
-      tisch << spielen(spieler1)
-      tisch << spielen(spieler2)
-      tisch << spielen(spieler3)
+      tisch << spieler1.spielen()
+      tisch << spieler2.spielen()
+      tisch << spieler3.spielen()
       println tisch
     }
 
-    println "Spieler 1: " + spieler1.sort()
-    println "Spieler 2: " + spieler2.sort()
-    println "Spieler 3: " + spieler3.sort()
+    println "Spieler 1: " + spieler1.hand.sort()
+    println "Spieler 2: " + spieler2.hand.sort()
+    println "Spieler 3: " + spieler3.hand.sort()
+  }
+}
+
+class Spieler {
+
+  Random random = new Random()
+  def hand = []
+
+  def spielen() {
+    def karte = hand.get(random.nextInt(hand.size()))
+    hand = hand - karte
+    return karte
   }
 }
