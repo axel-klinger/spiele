@@ -35,9 +35,9 @@ class Kartenspiel {
     // spielen
     10.times {
       def tisch = []
-      tisch << spieler1.spielen()
-      tisch << spieler2.spielen()
-      tisch << spieler3.spielen()
+      tisch << spieler1.spielen(tisch)
+      tisch << spieler2.spielen(tisch)
+      tisch << spieler3.spielen(tisch)
       println tisch
     }
 
