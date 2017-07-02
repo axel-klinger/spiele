@@ -4,8 +4,6 @@ class Spieler {
   def hand = []
 
   def spielen() {
-    def karte = hand.get(random.nextInt(hand.size()))
-    hand = hand - karte
-    return karte
+    hand.remove(random.nextInt(hand.size()))
   }
 }

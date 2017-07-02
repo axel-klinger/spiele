@@ -9,9 +9,7 @@ class Kartenspiel {
   static Random random = new Random()
 
   static ziehen() {
-    def karte = blatt.get(random.nextInt(blatt.size()))
-    blatt = blatt - karte
-    return karte
+    blatt.remove(random.nextInt(blatt.size()))
   }
 
   static geben(spieler1, spieler2, spieler3) {
